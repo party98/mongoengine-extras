@@ -6,8 +6,6 @@ HYPHENATE_REGEXP = re.compile(r'[-\s]+')
 
 
 def slugify(value):
-    if not isinstance(value, unicode):
-        value = unicode(value)
-    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
-    value = unicode(STRIP_REGEXP.sub('', value).strip().lower())
+    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('utf-8')
+    value = str(STRIP_REGEXP.sub('', value).strip().lower())
     return HYPHENATE_REGEXP.sub('-', value)

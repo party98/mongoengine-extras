@@ -21,7 +21,7 @@ class SlugField(StringField):
 
 
 def create_slug_signal(sender, document):
-    for fieldname, field in document._fields.iteritems():
+    for fieldname, field in document._fields.items():
         if isinstance(field, AutoSlugField):
             if document.pk and not getattr(field, 'always_update'):
                 continue
